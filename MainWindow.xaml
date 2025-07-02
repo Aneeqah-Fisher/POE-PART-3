@@ -1,0 +1,125 @@
+﻿<Window x:Class="CybersecurityChatbotWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cybersecurity Awareness Chatbot" Height="700" Width="900"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize">
+    <Grid Margin="10" >
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <!-- Chat area -->
+            <ColumnDefinition Width="2*"/>
+            <!-- Task assistant -->
+            <ColumnDefinition Width="3*"/>
+            <!-- Quiz -->
+        </Grid.ColumnDefinitions>
+
+        <!-- ==================== CHATBOT AREA ==================== -->
+        <GroupBox Header="Chatbot" Grid.Column="0" Margin="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Chat history display -->
+                <TextBox Name="txtChatHistory"
+                         Grid.Row="0"
+                         IsReadOnly="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         FontFamily="Consolas"
+                         FontSize="14"
+                         />
+
+                <!-- Input + send button -->
+                <DockPanel Grid.Row="1" Margin="0,5,0,0">
+                    <TextBox Name="txtUserInput"
+                             DockPanel.Dock="Left"
+                             Width="250"
+                             KeyDown="txtUserInput_KeyDown"
+                             FontSize="14"/>
+                    <Button Name="btnSend"
+                            Content="Send"
+                            Width="70"
+                            Margin="5,0,0,0"
+                            Click="btnSend_Click"/>
+                </DockPanel>
+            </Grid>
+        </GroupBox>
+
+        <!-- ==================== TASK ASSISTANT ==================== -->
+        <GroupBox Header="Task Assistant" Grid.Column="1" Margin="5">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Task Title -->
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,5">
+                    <Label Content="Title:" Width="50"/>
+                    <TextBox Name="txtTaskTitle" Width="200"/>
+                </StackPanel>
+
+                <!-- Task Description -->
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,0,0,5">
+                    <Label Content="Description:" Width="75"/>
+                    <TextBox Name="txtTaskDescription" Width="200"/>
+                </StackPanel>
+
+                <!-- Reminder Date -->
+                <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="0,0,0,5">
+                    <Label Content="Reminder:" Width="75"/>
+                    <DatePicker Name="dpTaskReminder" Width="200"/>
+                </StackPanel>
+
+                <!-- Task List -->
+                <ListView Name="lvTasks" Grid.Row="3" Margin="0,5,0,5" Height="250"
+                          SelectionMode="Single"
+                          DisplayMemberPath="Title"
+                          />
+
+                <!-- Buttons -->
+                <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5,0,0" >
+                    <Button Name="btnAddTask" Content="Add Task" Width="75" Margin="5" Click="btnAddTask_Click"/>
+                    <Button Name="btnDeleteTask" Content="Delete Task" Width="75" Margin="5" Click="btnDeleteTask_Click"/>
+                    <Button Name="btnMarkCompleted" Content="Mark Completed" Width="100" Margin="5" Click="btnMarkCompleted_Click"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <!-- ==================== QUIZ INTERFACE ==================== -->
+        <GroupBox Header="Cybersecurity Quiz" Grid.Column="2" Margin="5">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Start Quiz Button -->
+                <Button Name="btnStartQuiz" Content="Start Quiz" Width="100" HorizontalAlignment="Left" Click="btnStartQuiz_Click" Grid.Row="0" Margin="0,0,0,10"/>
+
+                <!-- Question Text -->
+                <TextBlock Name="txtQuizQuestion" Grid.Row="1" FontWeight="Bold" TextWrapping="Wrap" FontSize="16" Margin="0,0,0,10"/>
+
+                <!-- Answer Options -->
+                <StackPanel Name="spAnswerOptions" Grid.Row="2" Margin="0,0,0,10"/>
+
+                <!-- Submit Answer Button -->
+                <Button Name="btnSubmitAnswer" Content="Submit Answer" Width="120" HorizontalAlignment="Left" Click="btnSubmitAnswer_Click" Grid.Row="3" Margin="0,0,0,10"/>
+
+                <!-- Feedback Text -->
+                <TextBlock Name="txtQuizFeedback" Grid.Row="4" FontStyle="Italic" Foreground="DarkGreen" TextWrapping="Wrap" FontSize="14"/>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Window>
